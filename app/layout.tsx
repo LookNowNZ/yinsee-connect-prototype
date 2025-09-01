@@ -1,4 +1,5 @@
 import type React from "react"
+import { Suspense } from "react"
 import type { Metadata, Viewport } from "next"
 import { Playfair_Display, Source_Sans_3 } from "next/font/google"
 import "./globals.css"
@@ -57,7 +58,10 @@ export default function RootLayout({
       </head>
       <body className="font-sans min-h-screen flex flex-col app-root">
         <AppInitializer />
-        <TestModeRibbon />
+<Suspense fallback={null}>
+  <TestModeRibbon />
+</Suspense>
+
         <div className="bg-card border-b border-muted/20 py-2 px-4 text-center">
           <p className="text-muted text-sm">Preview mode — mock data (not saved to a server)</p>
         </div>
