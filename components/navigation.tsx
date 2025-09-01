@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname, useSearchParams } from "next/navigation"
+import { Suspense } from "react"
 import { cn } from "@/lib/utils"
 
 const navItems = [
@@ -12,7 +13,7 @@ const navItems = [
   { href: "/stats", label: "Stats" },
 ]
 
-export function Navigation() {
+function NavInner() {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const isTestMode = searchParams.get("test") === "1"
@@ -70,5 +71,13 @@ export function Navigation() {
         </div>
       </nav>
     </>
+  )
+}
+
+export function Navigation() {
+  return (
+    <Suspense fallback={null}>
+      <NavInner />
+    </Suspense>
   )
 }
