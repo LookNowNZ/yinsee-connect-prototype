@@ -65,7 +65,10 @@ export default function RootLayout({
         <div className="bg-card border-b border-muted/20 py-2 px-4 text-center">
           <p className="text-muted text-sm">Preview mode — mock data (not saved to a server)</p>
         </div>
-        <Navigation />
+        <Suspense fallback={null}>
+  <Navigation />
+</Suspense>
+
         <RequestsProvider>
           <BalanceProvider>
             <FeedbackProvider>
