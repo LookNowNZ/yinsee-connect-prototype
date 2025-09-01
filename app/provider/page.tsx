@@ -12,6 +12,11 @@ export default function ProviderPage() {
   const router = useRouter()
   const [provider, setProviderState] = useState<any>(null)
   const [loading, setLoading] = useState(true)
+
+  // NEW: derive feedback & activities on the client only
+  const [recentFeedback, setRecentFeedback] = useState<any[]>([])
+  const [recentActivities, setRecentActivities] = useState<any[]>([])
+
   const { addActivity, getRecentActivities, formatActivity } = useActivityLog()
 
   useEffect(() => {
@@ -20,16 +25,26 @@ export default function ProviderPage() {
     setLoading(false)
   }, [])
 
+  // Guarded helper: never touch localStorage on the server
   const getProviderFeedback = (providerId: string) => {
-    const allFeedback = JSON.parse(localStorage.getItem("yinsee_feedback") || "[]")
+    if (typeof window === "undefined") return []
+    const allFeedback = JSON.parse(window.localStorage.getItem("yinsee_feedback") || "[]")
     return allFeedback
       .filter((feedback: any) => feedback.providerId === providerId)
       .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
       .slice(0, 2)
   }
 
-  const recentFeedback = getProviderFeedback(provider?.id || "")
-  const recentActivities = getRecentActivities(5)
+  // Populate feedback & activities after provider loads (client-only)
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    setRecentActivities(getRecentActivities(5))
+    if (provider?.id) {
+      setRecentFeedback(getProviderFeedback(provider.id))
+    } else {
+      setRecentFeedback([])
+    }
+  }, [provider, getRecentActivities])
 
   const handleTopUp = () => {
     if (provider) {
@@ -39,10 +54,7 @@ export default function ProviderPage() {
       }
       setProvider(updatedProvider)
       setProviderState(updatedProvider)
-      addActivity({
-        type: "topup",
-        amount: 5,
-      })
+      addActivity({ type: "topup", amount: 5 })
       toast({ description: "Balance updated" })
     }
   }
@@ -66,7 +78,9 @@ export default function ProviderPage() {
   }
 
   const handleResetProfile = () => {
-    localStorage.removeItem("yinsee_provider")
+    if (typeof window !== "undefined") {
+      window.localStorage.removeItem("yinsee_provider")
+    }
     setProviderState(null)
     toast({ description: "Provider profile reset" })
   }
@@ -104,9 +118,7 @@ export default function ProviderPage() {
           <div className="bg-card rounded-lg p-4 md:p-6">
             <div className="flex items-center justify-center gap-4">
               <span className="text-sub">Your Provider ID: {provider.id}</span>
-              <TextButton variant="pill-small" onClick={handleCopy}>
-                Copy
-              </TextButton>
+              <TextButton variant="pill-small" onClick={handleCopy}>Copy</TextButton>
             </div>
           </div>
 
@@ -115,9 +127,7 @@ export default function ProviderPage() {
             <div className="text-center">
               <span className="text-sub text-foreground">Balance: {provider.walletCredits} credits</span>
               <div className="mt-3">
-                <TextButton variant="pill" onClick={handleTopUp}>
-                  Top up +5 (mock)
-                </TextButton>
+                <TextButton variant="pill" onClick={handleTopUp}>Top up +5 (mock)</TextButton>
               </div>
             </div>
           </div>
@@ -172,3 +182,4 @@ export default function ProviderPage() {
     </div>
   )
 }
+
