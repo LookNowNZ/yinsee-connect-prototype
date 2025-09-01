@@ -1,0 +1,18 @@
+{
+  "name": "YinSee Connect",
+  "short_name": "YinSee",
+  "description": "Your gateway to discovering and connecting with service providers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0B0F",
+  "theme_color": "#0B0B0F",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

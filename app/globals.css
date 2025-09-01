@@ -1,0 +1,753 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated background color from #0b0b0f to #141418 for better readability */
+  --background: #141418; /* Dark charcoal background */
+  --foreground: #ededed; /* Light text */
+  --card: #14141a; /* Dark card background */
+  --card-foreground: #ededed; /* Light card text */
+  --popover: #14141a; /* Dark popover background */
+  --popover-foreground: #ededed; /* Light popover text */
+  --primary: #7a7ae6; /* Purple accent color */
+  --primary-foreground: #0b0b0f; /* Dark text on primary */
+  --secondary: #14141a; /* Card color for secondary */
+  --secondary-foreground: #ededed; /* Light text on secondary */
+  --muted: #14141a; /* Card color for muted backgrounds */
+  --muted-foreground: #b1b1bd; /* Muted text color */
+  --accent: #7a7ae6; /* Purple accent color */
+  --accent-foreground: #0b0b0f; /* Dark text on accent */
+  --destructive: oklch(0.55 0.2 25); /* Red for errors */
+  --destructive-foreground: oklch(1 0 0); /* White text on destructive */
+  --border: #14141a; /* Card color for borders */
+  --input: #14141a; /* Card color for inputs */
+  --ring: #7a7ae6; /* Accent color for focus rings */
+  --chart-1: #7a7ae6; /* Accent for charts */
+  --chart-2: #b1b1bd; /* Muted for charts */
+  --chart-3: #ededed; /* Text color for charts */
+  --chart-4: #14141a; /* Card color for charts */
+  --chart-5: #0b0b0f; /* Background for charts */
+  --radius: 0.5rem; /* Standard corner rounding */
+  --sidebar: #14141a; /* Card color for sidebar */
+  --sidebar-foreground: #ededed; /* Light sidebar text */
+  --sidebar-primary: #7a7ae6; /* Accent color for sidebar */
+  --sidebar-primary-foreground: #0b0b0f; /* Dark text for primary sidebar elements */
+  --sidebar-accent: #7a7ae6; /* Accent color for sidebar */
+  --sidebar-accent-foreground: #0b0b0f; /* Dark text for sidebar accents */
+  --sidebar-border: #14141a; /* Card color for sidebar border */
+  --sidebar-ring: #7a7ae6; /* Accent color for sidebar focus ring */
+  --font-source-sans: "Source Sans 3", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+}
+
+.dark {
+  /* Updated dark mode background color to match new theme */
+  --background: #141418;
+  --foreground: #ededed;
+  --card: #14141a;
+  --card-foreground: #ededed;
+  --popover: #14141a;
+  --popover-foreground: #ededed;
+  --primary: #7a7ae6;
+  --primary-foreground: #0b0b0f;
+  --secondary: #14141a;
+  --secondary-foreground: #ededed;
+  --muted: #14141a;
+  --muted-foreground: #b1b1bd;
+  --accent: #7a7ae6;
+  --accent-foreground: #0b0b0f;
+  --destructive: oklch(0.4 0.14 25);
+  --destructive-foreground: oklch(0.65 0.24 25);
+  --border: #14141a;
+  --input: #14141a;
+  --ring: #7a7ae6;
+  --chart-1: #7a7ae6;
+  --chart-2: #b1b1bd;
+  --chart-3: #ededed;
+  --chart-4: #14141a;
+  --chart-5: #0b0b0f;
+  --sidebar: #14141a;
+  --sidebar-foreground: #ededed;
+  --sidebar-primary: #7a7ae6;
+  --sidebar-primary-foreground: #0b0b0f;
+  --sidebar-accent: #7a7ae6;
+  --sidebar-accent-foreground: #0b0b0f;
+  --sidebar-border: #14141a;
+  --sidebar-ring: #7a7ae6;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: var(--font-source-sans);
+  --font-serif: var(--font-playfair);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  /* Added iPhone safe area support and background */
+  html,
+  body {
+    background: #0b0b0f;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Added app-root class for safe area padding */
+  .app-root {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Enhanced responsive heading sizes with better contrast */
+  h1 {
+    font-size: 2.25rem; /* 36px default */
+    font-weight: 700;
+    color: #ededed;
+  }
+
+  h2 {
+    font-size: 1.875rem; /* 30px default */
+    font-weight: 600;
+    color: #ededed;
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px default */
+    font-weight: 600;
+    color: #ededed;
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      font-size: 2rem; /* 32px on small screens */
+    }
+
+    h2 {
+      font-size: 1.5rem; /* 24px on small screens */
+    }
+
+    h3 {
+      font-size: 1.25rem; /* 20px on small screens */
+    }
+  }
+
+  /* Enhanced card styling with better contrast and spacing */
+  .card,
+  [class*="card"] {
+    background-color: #1a1a22; /* Slightly lighter than page background */
+    max-width: 640px;
+    margin: 0 auto 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    border: 1px solid #2a2a35;
+  }
+
+  /* Enhanced activity list styling with hover effects and better layout */
+  .activity-list,
+  .request-list,
+  [class*="list"] {
+    max-height: 280px;
+    overflow-y: auto;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 8px 0;
+  }
+
+  .activity-item,
+  .list-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: background-color 120ms ease;
+    min-height: 44px;
+  }
+
+  .activity-item:hover,
+  .list-item:hover {
+    background-color: #1e1e2a;
+  }
+
+  .activity-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .activity-content {
+    flex: 1;
+  }
+
+  .activity-text {
+    color: #ededed;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 2px;
+  }
+
+  .activity-timestamp {
+    color: #a3a3b2;
+    font-size: 12px;
+    font-weight: 400;
+  }
+
+  @media (min-width: 640px) {
+    .activity-list,
+    .request-list,
+    [class*="list"] {
+      font-size: 15px;
+    }
+  }
+
+  /* Enhanced status chip styling with proper colors */
+  .status-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .status-available {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .status-connected {
+    background-color: rgba(122, 122, 230, 0.15);
+    color: #7a7ae6;
+    border: 1px solid rgba(122, 122, 230, 0.3);
+  }
+
+  /* Updated typography classes to match exact specifications */
+  .text-title {
+    @apply text-2xl font-bold; /* 24px bold */
+  }
+
+  .text-sub {
+    @apply text-base font-semibold; /* 16px semibold */
+  }
+
+  .text-body {
+    @apply text-sm font-normal; /* 14px normal */
+  }
+
+  /* Enhanced global button styling with increased fill contrast and stronger hover */
+  button:not(.no-global-styles),
+  .btn {
+    background-color: #1a1a22; /* Increased fill contrast */
+    border: 1.5px solid #7a7ae6; /* Accent color border */
+    color: #ffffff; /* Bold white text for primary buttons */
+    border-radius: 8px; /* Slightly more rounded */
+    padding: 12px 20px;
+    font-weight: 700; /* Bold text */
+    font-family: var(--font-sans);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 160ms ease-out;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Reset button styling with red fill and warning icon */
+  button.destructive:not(.no-global-styles),
+  .btn.destructive {
+    background-color: #dc2626; /* Red fill */
+    border: 1.5px solid #ef4444;
+    color: #ffffff;
+    position: relative;
+    padding-left: 44px; /* Space for icon */
+  }
+
+  button.destructive:not(.no-global-styles)::before,
+  .btn.destructive::before {
+    content: "⚠️";
+    position: absolute;
+    left: 12px;
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  /* Responsive button styling for small screens */
+  @media (max-width: 640px) {
+    button:not(.no-global-styles),
+    .btn {
+      padding: 10px 16px;
+      font-size: 15px;
+    }
+  }
+
+  /* Extra small device button styling */
+  @media (max-width: 360px) {
+    button:not(.no-global-styles),
+    .btn {
+      padding: 8px 14px;
+      font-size: 14px;
+      min-height: 44px; /* Preserve tap target */
+    }
+  }
+
+  /* Enhanced button hover state with stronger contrast */
+  button:not(.no-global-styles):hover:not(:disabled),
+  .btn:hover:not(:disabled) {
+    background-color: #242432; /* Stronger contrast fill */
+    border: 2px solid #8a8af0; /* Thicker border with brighter accent */
+    text-decoration: none; /* No underline on hover */
+    box-shadow: 0 4px 12px rgba(122, 122, 230, 0.25);
+    transform: translateY(-1px);
+  }
+
+  button.destructive:not(.no-global-styles):hover:not(:disabled),
+  .btn.destructive:hover:not(:disabled) {
+    background-color: #b91c1c;
+    border: 2px solid #dc2626;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+  }
+
+  /* Updated button active/pressed state with darker fill */
+  button:not(.no-global-styles):active:not(:disabled),
+  .btn:active:not(:disabled) {
+    background-color: #2b2b3a; /* Fill darkens slightly compared to hover */
+    border: 2px solid #b0b0ff; /* Border remains at 2px */
+    box-shadow: 0 2px 6px rgba(122, 122, 230, 0.22);
+    transform: translateY(0);
+  }
+
+  /* Enhanced button focus state with accent border and glow */
+  button:not(.no-global-styles):focus-visible,
+  .btn:focus-visible {
+    outline: none;
+    border: 2px solid #7a7ae6;
+    box-shadow: 0 0 0 4px rgba(122, 122, 230, 0.3), 0 0 12px rgba(122, 122, 230, 0.4);
+  }
+
+  /* Updated button disabled state with 50% opacity */
+  button:not(.no-global-styles):disabled,
+  .btn:disabled {
+    opacity: 0.5; /* 50% opacity */
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+  }
+
+  /* Secondary button styling with light gray text */
+  button.secondary:not(.no-global-styles),
+  .btn.secondary {
+    color: #b1b1bd; /* Light gray for secondary buttons */
+    background-color: #16161e;
+  }
+
+  /* Enhanced global form field styling with always visible background and improved states */
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  input[type="password"],
+  textarea,
+  select {
+    background-color: #1a1a22; /* Always visible against background */
+    border: 1px solid #444; /* Low-contrast baseline border */
+    border-radius: 8px;
+    padding: 12px 16px;
+    min-height: 44px;
+    font-family: var(--font-sans);
+    font-size: 16px; /* Ensure 16px minimum to prevent iOS zoom */
+    font-weight: 400;
+    color: #ededed;
+    transition: all 160ms ease;
+    width: 100%;
+    max-width: 640px;
+  }
+
+  /* Updated placeholder styling with exact color specification */
+  input[type="text"]::placeholder,
+  input[type="email"]::placeholder,
+  input[type="number"]::placeholder,
+  input[type="tel"]::placeholder,
+  input[type="url"]::placeholder,
+  input[type="password"]::placeholder,
+  textarea::placeholder {
+    color: #a3a3b2;
+  }
+
+  /* Enhanced hover state with lighter fill and thicker border */
+  input[type="text"]:hover:not(:focus),
+  input[type="email"]:hover:not(:focus),
+  input[type="number"]:hover:not(:focus),
+  input[type="tel"]:hover:not(:focus),
+  input[type="url"]:hover:not(:focus),
+  input[type="password"]:hover:not(:focus),
+  textarea:hover:not(:focus),
+  select:hover:not(:focus) {
+    background-color: #1e1e2a; /* Lighter fill */
+    border: 1.5px solid #666; /* Thicker border */
+  }
+
+  /* Enhanced focus state with accent border and glow */
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    background-color: #242432; /* Brighter background on focus */
+    border: 2px solid #7a7ae6; /* Accent border */
+    box-shadow: 0 0 0 4px rgba(122, 122, 230, 0.2), 0 0 12px rgba(122, 122, 230, 0.3); /* Accent glow */
+  }
+
+  /* Updated disabled state styling with exact specifications */
+  input[type="text"]:disabled,
+  input[type="email"]:disabled,
+  input[type="number"]:disabled,
+  input[type="tel"]:disabled,
+  input[type="url"]:disabled,
+  input[type="password"]:disabled,
+  textarea:disabled,
+  select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  /* Enhanced textarea with auto-expand behavior and disabled resize handle */
+  textarea {
+    resize: none;
+    min-height: 44px;
+    max-height: 264px;
+    overflow-y: auto;
+    line-height: 1.5;
+  }
+
+  /* Select dropdown specific styling */
+  select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23A3A3B2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 14px center;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    padding-right: 40px;
+    font-family: var(--font-sans);
+  }
+
+  /* Added dropdown menu styling for select popups */
+  select option {
+    background-color: #1b1b24;
+    color: #ededed;
+    padding: 8px 12px;
+  }
+
+  select option:hover,
+  select option:focus {
+    background-color: #242437;
+    color: #ededed;
+  }
+
+  /* Added keyboard-selected option styling */
+  select option:checked,
+  select option[selected] {
+    border-left: 2px solid #7a7ae6;
+    background-color: #242437;
+  }
+
+  /* Enhanced form layout with tighter spacing and active field expansion */
+  .form-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .form-field {
+    margin-bottom: 14px; /* Tighter spacing by default */
+    transition: margin 160ms ease;
+  }
+
+  .form-field:focus-within {
+    margin-bottom: 18px; /* Expand slightly when field is active */
+  }
+
+  .form-field:last-child {
+    margin-bottom: 0;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #ededed;
+    font-size: 16px;
+    font-family: var(--font-serif);
+  }
+
+  /* Responsive label font size for small screens */
+  @media (max-width: 640px) {
+    .form-label {
+      font-size: 15px;
+    }
+  }
+
+  /* Validation message styling */
+  .form-error {
+    display: block;
+    margin-top: 8px;
+    color: #ff6b6b;
+    font-size: 13px;
+    font-weight: 400;
+    font-family: var(--font-serif);
+  }
+
+  /* Submit button spacing */
+  .form-submit {
+    margin-top: 20px; /* Reduced from 24px */
+  }
+
+  /* Reduced spacing between form fields */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 14px; /* Tighter spacing */
+  }
+
+  @media (max-width: 640px) {
+    .form-group {
+      gap: 12px;
+    }
+  }
+
+  /* Enhanced dialog styling with lighter background and clear sections */
+  .dialog-overlay {
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    backdrop-filter: blur(4px);
+  }
+
+  .dialog-content {
+    background-color: #1e1e2a; /* Slightly lighter than page background */
+    border: 1px solid #2a2a35;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    max-width: 480px;
+    width: 90vw;
+    font-family: var(--font-serif);
+  }
+
+  .dialog-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid #2a2a35;
+    font-family: var(--font-serif);
+  }
+
+  .dialog-body {
+    padding: 20px 24px;
+    font-family: var(--font-serif);
+  }
+
+  .dialog-actions {
+    padding: 16px 24px 20px;
+    border-top: 1px solid #2a2a35;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    font-family: var(--font-serif);
+  }
+
+  /* Enhanced feedback dialog with rating and comment support */
+  .feedback-rating {
+    display: flex;
+    gap: 8px;
+    margin: 16px 0;
+    justify-content: center;
+  }
+
+  .rating-star {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    color: #444;
+    transition: color 120ms ease;
+    font-size: 24px;
+    font-family: var(--font-mono);
+  }
+
+  .rating-star:hover,
+  .rating-star.active {
+    color: #fbbf24;
+  }
+
+  .feedback-comment {
+    margin-top: 16px;
+  }
+
+  .feedback-comment textarea {
+    max-length: 200;
+    min-height: 80px;
+    font-family: var(--font-mono);
+  }
+
+  /* Warning dialog styling with clear danger indicators */
+  .warning-dialog .dialog-content {
+    border: 2px solid #dc2626;
+  }
+
+  .warning-dialog .dialog-header {
+    background-color: rgba(220, 38, 38, 0.1);
+    color: #fca5a5;
+    font-family: var(--font-serif);
+  }
+
+  .warning-icon {
+    width: 48px;
+    height: 48px;
+    color: #dc2626;
+    margin: 0 auto 16px;
+    display: block;
+  }
+
+  /* Interactive element consistency - all follow same hover/focus rules */
+  .interactive:hover {
+    background-color: #1e1e2a;
+    border-color: #666;
+  }
+
+  .interactive:focus-visible {
+    outline: none;
+    border-color: #7a7ae6;
+    box-shadow: 0 0 0 4px rgba(122, 122, 230, 0.2);
+  }
+
+  /* Ensure all tap targets meet 44px minimum height */
+  .tap-target {
+    min-height: 44px;
+    min-width: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Enhanced focus ring visibility for hardware keyboards and accessibility tools */
+  *:focus-visible {
+    outline: 2px solid #7a7ae6 !important;
+    outline-offset: 2px !important;
+    box-shadow: 0 0 0 4px rgba(122, 122, 230, 0.3) !important;
+  }
+
+  /* High contrast mode support for bright daylight conditions */
+  @media (prefers-contrast: high) {
+    button:not(.no-global-styles),
+    .btn {
+      border-width: 2px;
+      font-weight: 800;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="password"],
+    textarea,
+    select {
+      border-width: 2px;
+      font-weight: 500;
+    }
+  }
+
+  /* Enhanced dialog visibility on small screens */
+  @media (max-width: 640px) {
+    .dialog-content {
+      width: 95vw;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .dialog-header,
+    .dialog-body,
+    .dialog-actions {
+      padding: 16px 20px;
+    }
+  }
+
+  /* Improved Recent Activity list for mobile readability */
+  @media (max-width: 640px) {
+    .activity-item,
+    .list-item {
+      padding: 16px 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .activity-icon {
+      margin-right: 0;
+      margin-bottom: 4px;
+    }
+
+    .activity-text {
+      font-size: 15px;
+      line-height: 1.4;
+    }
+
+    .activity-timestamp {
+      font-size: 13px;
+      align-self: flex-end;
+    }
+  }
+
+  /* Updated full-height sections to use dvh instead of vh */
+  .full-height {
+    height: 100dvh;
+  }
+}
