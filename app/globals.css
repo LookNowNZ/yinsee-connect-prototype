@@ -1,79 +1,174 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+Skip to content
+Navigation Menu
+LookNowNZ
+yinsee-connect-prototype
 
-/* ========== YinSee Theme: “Earth” palette ========== */
+Type / to search
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+Commit ed8d8bc
+LookNowNZ
+LookNowNZ
+authored
+1 hour ago
+·
+·
+Verified
+theme: Earth palette tokens in app/globals.css
+main
+1 parent 
+72f162e
+ commit 
+ed8d8bc
+File tree
+Filter files…
+app
+globals.css
+1 file changed
++59
+-69
+lines changed
+Search within code
+ 
+‎app/globals.css
++59
+-69
+Lines changed: 59 additions & 69 deletions
+Original file line number	Diff line number	Diff line change
+@@ -4,80 +4,70 @@
+@custom-variant dark (&:is(.dark *));
+
 :root {
-  /* Light */
+  /* Updated background color from #0b0b0f to #141418 for better readability */
+  --background: #141418; /* Dark charcoal background */
+  --foreground: #ededed; /* Light text */
+  --card: #14141a; /* Dark card background */
+  --card-foreground: #ededed; /* Light card text */
+  --popover: #14141a; /* Dark popover background */
+  --popover-foreground: #ededed; /* Light popover text */
+  --primary: #7a7ae6; /* Purple accent color */
+  --primary-foreground: #0b0b0f; /* Dark text on primary */
+  --secondary: #14141a; /* Card color for secondary */
+  --secondary-foreground: #ededed; /* Light text on secondary */
+  --muted: #14141a; /* Card color for muted backgrounds */
+  --muted-foreground: #b1b1bd; /* Muted text color */
+  --accent: #7a7ae6; /* Purple accent color */
+  --accent-foreground: #0b0b0f; /* Dark text on accent */
+  --destructive: oklch(0.55 0.2 25); /* Red for errors */
+  --destructive-foreground: oklch(1 0 0); /* White text on destructive */
+  --border: #14141a; /* Card color for borders */
+  --input: #14141a; /* Card color for inputs */
+  --ring: #7a7ae6; /* Accent color for focus rings */
+  --chart-1: #7a7ae6; /* Accent for charts */
+  --chart-2: #b1b1bd; /* Muted for charts */
+  --chart-3: #ededed; /* Text color for charts */
+  --chart-4: #14141a; /* Card color for charts */
+  --chart-5: #0b0b0f; /* Background for charts */
+  --radius: 0.5rem; /* Standard corner rounding */
+  --sidebar: #14141a; /* Card color for sidebar */
+  --sidebar-foreground: #ededed; /* Light sidebar text */
+  --sidebar-primary: #7a7ae6; /* Accent color for sidebar */
+  --sidebar-primary-foreground: #0b0b0f; /* Dark text for primary sidebar elements */
+  --sidebar-accent: #7a7ae6; /* Accent color for sidebar */
+  --sidebar-accent-foreground: #0b0b0f; /* Dark text for sidebar accents */
+  --sidebar-border: #14141a; /* Card color for sidebar border */
+  --sidebar-ring: #7a7ae6; /* Accent color for sidebar focus ring */
+  --font-source-sans: "Source Sans 3", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  /* YinSee “Earth” — light */
   --background: 33 52.7% 89.2%;        /* #F2E5D5 */
   --foreground: 21 26.4% 35.7%;        /* #735443 */
-
   --card: 33 69.8% 83.1%;              /* #F2D7B6 */
   --card-foreground: 21 26.4% 35.7%;
-
   --popover: 33 69.8% 83.1%;
   --popover-foreground: 21 26.4% 35.7%;
-
   --primary: 169 13.3% 39.8%;          /* #58736E */
   --primary-foreground: 33 52.7% 89.2%;
-
   --secondary: 33 33.7% 62.2%;         /* #BFA27E */
   --secondary-foreground: 21 26.4% 15%;
-
   --muted: 33 33% 80%;
   --muted-foreground: 21 10% 35%;
-
   --accent: 33 33.7% 62.2%;
   --accent-foreground: 21 26.4% 15%;
-
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-
   --border: 33 29% 76%;
   --input: 33 29% 76%;
   --ring: 169 13.3% 39.8%;
-
   --radius: 0.75rem;
 }
 
 .dark {
-  /* Dark */
+  /* Updated dark mode background color to match new theme */
+  --background: #141418;
+  --foreground: #ededed;
+  --card: #14141a;
+  --card-foreground: #ededed;
+  --popover: #14141a;
+  --popover-foreground: #ededed;
+  --primary: #7a7ae6;
+  --primary-foreground: #0b0b0f;
+  --secondary: #14141a;
+  --secondary-foreground: #ededed;
+  --muted: #14141a;
+  --muted-foreground: #b1b1bd;
+  --accent: #7a7ae6;
+  --accent-foreground: #0b0b0f;
+  --destructive: oklch(0.4 0.14 25);
+  --destructive-foreground: oklch(0.65 0.24 25);
+  --border: #14141a;
+  --input: #14141a;
+  --ring: #7a7ae6;
+  --chart-1: #7a7ae6;
+  --chart-2: #b1b1bd;
+  --chart-3: #ededed;
+  --chart-4: #14141a;
+  --chart-5: #0b0b0f;
+  --sidebar: #14141a;
+  --sidebar-foreground: #ededed;
+  --sidebar-primary: #7a7ae6;
+  --sidebar-primary-foreground: #0b0b0f;
+  --sidebar-accent: #7a7ae6;
+  --sidebar-accent-foreground: #0b0b0f;
+  --sidebar-border: #14141a;
+  --sidebar-ring: #7a7ae6;
+  /* YinSee “Earth” — dark */
   --background: 21 26% 12%;
   --foreground: 33 52.7% 89.2%;
-
   --card: 21 26% 16%;
   --card-foreground: 33 52.7% 89.2%;
-
   --popover: 21 26% 16%;
   --popover-foreground: 33 52.7% 89.2%;
-
   --primary: 169 13.3% 39.8%;          /* #58736E */
   --primary-foreground: 33 52.7% 89.2%;
-
   --secondary: 33 33.7% 35%;
   --secondary-foreground: 33 52.7% 89.2%;
-
   --muted: 21 15% 20%;
   --muted-foreground: 33 24% 70%;
-
   --accent: 33 33.7% 35%;
   --accent-foreground: 33 52.7% 89.2%;
-
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
-
   --border: 21 12% 24%;
   --input: 21 12% 24%;
   --ring: 169 13.3% 39.8%;
 }
 
-/* Base element styling that uses the design tokens above */
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+0 commit comments
+Comments
+0
+ (0)
+Comment
+You're not receiving notifications from this thread.
+
+theme: Earth palette tokens in app/globals.css · LookNowNZ/yinsee-connect-prototype@ed8d8bc 
